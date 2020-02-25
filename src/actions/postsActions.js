@@ -1,5 +1,6 @@
 import {
   FETCH_POSTS,
+  FETCH_POSTS_SAGA,
   FETCH_POSTS_REJECTED,
   FETCH_POSTS_FULFILLED,
   CLEAR_POSTS_ERRORS,
@@ -22,4 +23,4 @@ export const _getPosts = () => async dispatch => {
   }
 };
 
-export const _getPostsSaga = () => ({ type: FETCH_POSTS });
+export const _getPostsSaga = () => ({ type: FETCH_POSTS_SAGA });

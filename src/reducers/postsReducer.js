@@ -3,6 +3,7 @@ import {
   FETCH_POSTS_REJECTED,
   FETCH_POSTS_FULFILLED,
   CLEAR_POSTS_ERRORS,
+  FETCH_POSTS_SAGA,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -15,6 +16,12 @@ const initialState = {
 const postsReducer = (state = initialState, action) => {
   switch(action.type) {
     case FETCH_POSTS:
+      return {
+        ...state,
+        fetching: true,
+        fetched: false,
+      };
+    case FETCH_POSTS_SAGA:
       return {
         ...state,
         fetching: true,
