@@ -7,6 +7,7 @@ import {
 import API from '../api';
 
 export const _getPosts = () => async dispatch => {
+  console.log('THUNK');
   dispatch({ type: CLEAR_POSTS_ERRORS });
   dispatch({ type: FETCH_POSTS });
   try {
@@ -20,3 +21,5 @@ export const _getPosts = () => async dispatch => {
     dispatch({ type: FETCH_POSTS_REJECTED, payload: error });
   }
 };
+
+export const _getPostsSaga = () => ({ type: FETCH_POSTS });

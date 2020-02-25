@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
 const Container = (
   {
     _getPosts,
+    _getPostsSaga,
     _posts,
     _fetching,
     _fetched,
@@ -68,7 +69,8 @@ const Container = (
 
   useEffect(() => {
     _getPosts();
-  }, [_getPosts]);
+    // _getPostsSaga();
+  }, [_getPosts, _getPostsSaga]);
 
   return (
     <div className={classes.root}>
@@ -133,11 +135,12 @@ const mapStateToProps = ({ posts }) => ({
 const mapDispatchToProps = dispatch => bindActionCreators(postsActions, dispatch);
 
 Container.propTypes = {
-  _posts: PropTypes.arrayOf(PropTypes.shape(post)),
-  _fetching: PropTypes.bool,
-  _fetched: PropTypes.bool,
+  _posts: PropTypes.arrayOf(PropTypes.shape(post)).isRequired,
+  _fetching: PropTypes.bool.isRequired,
+  _fetched: PropTypes.bool.isRequired,
   _error: PropTypes.any,
-  _getPosts: PropTypes.func,
+  _getPosts: PropTypes.func.isRequired,
+  _getPostsSaga: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Container);
