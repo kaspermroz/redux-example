@@ -4,41 +4,41 @@ import {
   FETCH_POSTS_FULFILLED,
   CLEAR_POSTS_ERRORS,
   FETCH_POSTS_SAGA,
-} from '../actions/actionTypes';
+} from './actionTypes';
 
 const initialState = {
-  posts: [],
-  fetching: false,
-  fetched: false,
+  data: [],
+  loading: false,
+  success: false,
   error: null,
 };
 
-const postsReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch(action.type) {
     case FETCH_POSTS:
       return {
         ...state,
-        fetching: true,
-        fetched: false,
+        loading: true,
+        success: false,
       };
     case FETCH_POSTS_SAGA:
       return {
         ...state,
-        fetching: true,
-        fetched: false,
+        loading: true,
+        success: false,
       };
     case FETCH_POSTS_REJECTED:
       return {
         ...state,
-        fetching: false,
+        loading: false,
         error: action.payload,
       };
     case FETCH_POSTS_FULFILLED:
       return {
         ...state,
-        fetching: false,
-        fetched: true,
-        posts: action.payload,
+        loading: false,
+        success: true,
+        data: action.payload,
       };
     case CLEAR_POSTS_ERRORS:
       return {
@@ -50,4 +50,4 @@ const postsReducer = (state = initialState, action) => {
   }
 };
 
-export default postsReducer;
+export default reducer;

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as postsActions from '../actions/postsActions';
+import * as postsActions from '../redux/posts/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -60,8 +60,8 @@ const Container = (
     _getPosts,
     _getPostsSaga,
     _posts,
-    _fetching,
-    _fetched,
+    _loading,
+    _success,
     _error,
   }
 ) => {
@@ -112,10 +112,10 @@ const Container = (
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-          {_fetching && <div className={classes.progressRoot}>
+          {_loading && <div className={classes.progressRoot}>
             <CircularProgress variant="indeterminate" size={100}/>
           </div>}
-          {_fetched && <Content posts={_posts} />}
+          {_success && <Content posts={_posts} />}
           {_error && <div>
             <p>Error :(</p>
           </div>}
@@ -126,9 +126,9 @@ const Container = (
 
 
 const mapStateToProps = ({ posts }) => ({
-  _posts: posts.posts,
-  _fetching: posts.fetching,
-  _fetched: posts.fetched,
+  _posts: posts.data,
+  _loading: posts.loading,
+  _success: posts.success,
   _error: posts.error,
 });
 
@@ -136,8 +136,8 @@ const mapDispatchToProps = dispatch => bindActionCreators(postsActions, dispatch
 
 Container.propTypes = {
   _posts: PropTypes.arrayOf(PropTypes.shape(post)).isRequired,
-  _fetching: PropTypes.bool.isRequired,
-  _fetched: PropTypes.bool.isRequired,
+  _loading: PropTypes.bool.isRequired,
+  _success: PropTypes.bool.isRequired,
   _error: PropTypes.any,
   _getPosts: PropTypes.func.isRequired,
   _getPostsSaga: PropTypes.func.isRequired,

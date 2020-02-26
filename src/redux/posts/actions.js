@@ -5,10 +5,9 @@ import {
   FETCH_POSTS_FULFILLED,
   CLEAR_POSTS_ERRORS,
 } from './actionTypes';
-import API from '../api';
+import API from '../../api';
 
 export const _getPosts = () => async dispatch => {
-  console.log('THUNK');
   dispatch({ type: CLEAR_POSTS_ERRORS });
   dispatch({ type: FETCH_POSTS });
   try {

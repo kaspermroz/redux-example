@@ -3,11 +3,10 @@ import {
   FETCH_POSTS_FULFILLED,
   FETCH_POSTS_REJECTED,
   CLEAR_POSTS_ERRORS
-} from '../actions/actionTypes';
-import API from '../api';
+} from './actionTypes';
+import API from '../../api';
 
 function* fetchPosts() {
-  console.log("SAGA");
   yield put({ type: CLEAR_POSTS_ERRORS });
   try {
     const { data, error } = yield call(API.getPosts);
